@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+	  <AssemblyVersion>1.0.0.0101</AssemblyVersion>
+	  <FileVersion>1.0.0.0101</FileVersion>
+	  <Version>1.0.0.20250101</Version>
+
+	  <Title>文本调用HttpApi</Title>
+	  <Company>Hgnim</Company>
+	  <Product>TextHttpApi</Product>
+	  <Description>TextHttpApi</Description>
+	  <Copyright>Copyright (C) 2025 Hgnim, All rights reserved.</Copyright>
+	  <AssemblyName>tha_server</AssemblyName>
+  </PropertyGroup>
+
+</Project>
