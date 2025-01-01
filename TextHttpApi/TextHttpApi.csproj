@@ -5,6 +5,9 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
 
+	  <!--禁用静态Web资产以阻止发布时生成.staticwebassets.endpoints.json文件-->
+	  <StaticWebAssetsEnabled>false</StaticWebAssetsEnabled>
+
 	  <AssemblyVersion>1.0.0.0101</AssemblyVersion>
 	  <FileVersion>1.0.0.0101</FileVersion>
 	  <Version>1.0.0.20250101</Version>
