@@ -16,38 +16,49 @@ namespace TextHttpApi
 禁止将该服务用于任何违法用途。因任何原因导致的任何后果都将由用户承担，开发者对此不承担任何责任。"
 );
 
-            if(!Directory.Exists(dataDir)) Directory.CreateDirectory(dataDir);
-			if (File.Exists(textFile)) {
-				using StreamReader sr = new(textFile);
-				{
-					string? rStr;
-					do {
-						rStr = sr.ReadLine();
-						if (rStr != null)
-							allText.Add(rStr);
-					} while (rStr != null);
+			if (!Directory.Exists(FilePath.dataDir)) Directory.CreateDirectory(FilePath.dataDir);
+
+			if (File.Exists(FilePath.configFile)) {
+				try {
+					DataFile.ReadData();
+				} catch (Exception ex) { Console.WriteLine($"处理配置文件时出现错误，原因: {ex.Message}"); return; }
+
+				if (DataCore.DataFiles.config.UpdateConfig == true) {
+					DataCore.DataFiles.config.UpdateConfig = false;
+					DataFile.SaveData();
+					Console.WriteLine("配置文件已更新，已退出服务端");
+					return;
 				}
 			}
 			else {
-				File.Create(textFile).Close();
-				Console.WriteLine("已在当前目录生成配置文件，完成配置后再次启动服务端。");
-				return;
+				DataFile.SaveData();
 			}
 
 			var builder = WebApplication.CreateBuilder(args);
-
-			// Add services to the container.
 			builder.Services.AddControllersWithViews();
-			builder.WebHost.UseUrls("http://127.0.0.1:18008");
-			var app = builder.Build();
+			builder.Services.AddHttpClient();
 
+			builder.WebHost.UseUrls($"{(DataFiles.config.Website.UseHttps ? "https" : "http")}://{DataFiles.config.Website.Addr}:{DataFiles.config.Website.Port}");
+			var app = builder.Build();
+			app.UsePathBase(DataFiles.config.Website.UrlRoot);
+			/*// Configure the HTTP request pipeline.
+            if (!app.Environment.IsDevelopment())
+            {
+                app.UseExceptionHandler("/Home/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }*/
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
+
 			app.UseRouting();
+
 			app.UseAuthorization();
+
 			app.MapControllerRoute(
 				name: "default",
 				pattern: "{controller=Main}/{action=Index}"); // /{id?}");
+
 			app.Run();
 		}
     }

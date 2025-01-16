@@ -8,16 +8,21 @@
 	  <!--禁用静态Web资产以阻止发布时生成.staticwebassets.endpoints.json文件-->
 	  <StaticWebAssetsEnabled>false</StaticWebAssetsEnabled>
 
-	  <AssemblyVersion>1.0.0.0101</AssemblyVersion>
-	  <FileVersion>1.0.0.0101</FileVersion>
-	  <Version>1.0.0.20250101</Version>
-
-	  <Title>文本调用HttpApi</Title>
+	  <AssemblyTitle>文本调用HttpApi</AssemblyTitle>
 	  <Company>Hgnim</Company>
 	  <Product>TextHttpApi</Product>
 	  <Description>TextHttpApi</Description>
 	  <Copyright>Copyright (C) 2025 Hgnim, All rights reserved.</Copyright>
 	  <AssemblyName>tha_server</AssemblyName>
+
+	  <AssemblyVersion>1.1.0</AssemblyVersion>
+	  <FileVersion>1.1.0.0116</FileVersion>
+	  <VersionPrefix>1.1.0.20250116</VersionPrefix>
+	  <VersionSuffix></VersionSuffix>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="YamlDotNet" Version="16.3.0" />
+  </ItemGroup>
 
 </Project>
